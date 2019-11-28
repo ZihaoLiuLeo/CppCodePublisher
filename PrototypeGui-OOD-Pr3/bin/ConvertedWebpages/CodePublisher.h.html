@@ -1,0 +1,116 @@
+<DOCTYPE !HTML>
+<html>
+  <head>
+    <Title>CodePublisher.h</Title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+    <span class="absolute">
+      <label><input type="checkbox" id ="hideF" value="hidefuncs" checked="true" onclick="toggleVisibility('function')">Functions</label><br>
+      <label><input type="checkbox" id ="hideC" value="hideclass" checked="true" onclick="toggleVisibility('class')">Classes</label><br>
+      <label><input type="checkbox" id ="hidec" value="hidecomms" checked="true" onclick="toggleVisibility('comment')">Comments</label><br>
+    </span>
+    <h3>Dependencies: 
+      <a href=".html"></a>
+      <a href="CodePublisher.cpp.html">CodePublisher.cpp</a>
+    </h3>    <pre>
+#pragma once
+<span class="comment">///////////////////////////////////////////////////////////////////////////
+// CodePublisher.h : defines facade/executive for OOD Pr1 S19            //
+// ver 2.0                                                               //
+//                                                                       // 
+// Application   : OOD-S19 Instructor Solution                           //
+// Platform      : Visual Studio Community 2017, Windows 10 Pro x64      //
+// Author        : Ammar Salman, Syracuse University                     //
+//                 313/788-4694, assalman@syr.edu                        //
+///////////////////////////////////////////////////////////////////////////</span>
+<span class="comment">/*
+*  Package Operations:
+* =======================
+*  This package defines CodePublisher which uses different components of
+*  CodeConverter, Display and DirectoryN to put together the entire 
+*  functionality of the CodePublisher. The mentioned packages are indep-
+*  ndent of each other and their only interaction is through this facade
+*
+*  NOTE: there are TWO modes for compiling this file:
+*   1) Preprocessor DEMO_CP : runs in full demo mode for Pr1.
+*   2) Preprocessor USE_CP  : runs normal functionality. 
+*
+*  Required Files:
+* =======================
+*  CodePublisher.h CodePublisher.cpp CodeUtilities.h
+*  Converter.h Converter.cpp DirExplorerN.h DirExplorerN.cpp
+*  Display.h Display.cpp Logger.h Logger.cpp 
+*
+*  Maintainence History:
+* =======================
+*  ver 2.0 - 27 Mar 2019
+*  - added file parsing support to extract information
+*  - added automated dependency analysis support 
+*  - function 'extractFiles' is no longer public, it's replaced with 'configure()'
+*  ver 1.0 - 14 Feb 2019
+*  - first release
+*/</span>
+
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include "ICodePublisher.h"
+
+#include "../Utilities/CodeUtilities/CodeUtilities.h"
+
+class CodePublisher : public ICodePublisher
+<span class="class">{
+public:
+  CodePublisher();
+
+  bool processCommandLineArgs(int argc, char ** argv);
+  
+  void workingDirectory(const std::string& dir);
+  const std::string& workingDirectory() const;
+
+  void outputDirectory(const std::string& dir);
+  const std::string& outputDirectory() const; 
+
+  bool configure();
+
+  void publish();
+  void publish(const std::string& file);
+  void publish(const std::vector&lt;std::string&gt;& files);
+
+  void storeArgs(std::vector&lt;std::string&gt;& sArgv);
+
+  std::vector&lt;std::string&gt;& getArg();
+
+  Utilities::DisplayMode displayMode() const;
+
+  
+
+private:
+  Utilities::ProcessCmdLine *pcl_;
+  bool extractFiles();
+  void analyzeFiles();
+  <span class="comment">/*CodeConverter cconv_;
+  Display display_;
+
+  std::string dirIn_; 
+  std::string dirOut_;
+
+  std::vector&lt;std::string&gt; files_;
+
+  */</span>
+
+  <span class="comment">//std::vector&lt;std::string&gt; _sarg;</span>
+
+}</span>;
+
+inline ICodePublisher* ICodePublisher::create()
+<span class="function">{
+	ICodePublisher* pCP = new CodePublisher();
+	return pCP;
+}</span>
+
+    </pre>
+  </body>
+</html>

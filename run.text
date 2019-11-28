@@ -1,0 +1,3 @@
+cd PrototypeGui-OOD-Pr3/bin/ConvertedWebpages
+CodePublisher.exe .. /s /demo *.h *.cpp [A-C](.*)
+cd ..
