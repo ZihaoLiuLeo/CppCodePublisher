@@ -1,13 +1,3 @@
-///////////////////////////////////////////////////////////////////////////
-// CodePublisher.cpp : defines facade/executive for OOD Pr1 S19          //
-// ver 2.0                                                               //
-//                                                                       // 
-// Application   : OOD-S19 Instructor Solution                           //
-// Platform      : Visual Studio Community 2017, Windows 10 Pro x64      //
-// Author        : Ammar Salman, Syracuse University                     //
-//                 313/788-4694, assalman@syr.edu                        //
-///////////////////////////////////////////////////////////////////////////
-
 #include "CodePublisher.h"
 #include "../FileProcessor/FileProcessor.h"
 #include "../DependencyAnalysis/DependencyAnalysis.h"
